@@ -3,7 +3,6 @@ import { StoryblokCMS } from "@/utils/cms";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 
 import Page from "@/components/content-types/Page";
-
 import Teaser from "@/components/nestable/Teaser";
 import RichTextDefault from "@/components/nestable/RichText";
 

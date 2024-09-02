@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@storyblok/react": "^3.0.10",
-    "next": "14.2.3",
+    "@storyblok/react": "^3.0.14",
+    "next": "^14.2.7",
     "react": "^18",
     "react-dom": "^18",
     "storyblok-rich-text-react-renderer": "^2.9.2"

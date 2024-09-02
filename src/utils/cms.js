@@ -3,7 +3,7 @@ export class StoryblokCMS {
   static IS_PROD = process.env.NODE_ENV === "production";
   static IS_DEV = process.env.NODE_ENV === "development";
   static VERSION = this.IS_PROD ? "published" : "draft";
-  static TOKEN = process.env.NEXT_PUBLIC_PREVIEW_STORYBLOK_TOKEN;
+  static TOKEN = process.env.NEXT_PUBLIC_PREVIEW_STORYBLOK_TOKEN 
 
   static async sbGet(path, params) {
     return getStoryblokApi().get(path, params);
@@ -13,6 +13,7 @@ export class StoryblokCMS {
     if (!params) return {};
     const uri = params?.slug?.join("/");
     const storyUrl = "cdn/stories/" + uri;
+    console.log(`Fetching story: ${storyUrl}`)
     const { data } = await this.sbGet(
       storyUrl,
       this.getDefaultSBParams()
@@ -34,6 +35,7 @@ export class StoryblokCMS {
         "cdn/stories/config",
         this.getDefaultSBParams()
       );
+      console.log("CONFIG DATA:", data);
       return data?.story;
     } catch (error) {
       console.log("CONFIG ERROR", error);
@@ -61,6 +63,7 @@ export class StoryblokCMS {
       };
 
       let { data } = await this.sbGet("cdn/links/", sbParams);
+      console.log("STATIC PATHS DATA:", data); 
       let paths = [];
 
       Object.keys(data.links).forEach((linkKey) => {
