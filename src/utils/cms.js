@@ -17,8 +17,9 @@ export class StoryblokCMS {
     const { data } = await this.sbGet(
       storyUrl,
       this.getDefaultSBParams()
-    );
-    return data.story;
+      );
+      console.log('Fetched Story Data:', data);
+      return data.story;
   }
 
   static getDefaultSBParams() {

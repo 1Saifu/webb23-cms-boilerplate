@@ -1,9 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ["a.storyblok.com"],
-        formats: ["image/avif", "image/webp"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'a.storyblok.com',
+        port: '',
+        pathname: '**',
       },
+    ],
+    formats: ['image/avif', 'image/webp'],
+  },
 };
 
 export default nextConfig;
