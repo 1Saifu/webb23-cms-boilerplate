@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../styles/header.css'; // Import CSS module
+import styles from '../styles/header.css'; 
 
-// Utility function to construct URL from link data
+
 const getLinkUrl = (link) => {
   return link.cached_url ? `/${link.cached_url}` : '#';
 };
 
 export default function Header({ config }) {
-  if (!config || !config.content) return null; // Ensure config is valid
+  if (!config || !config.content) return null; 
 
   const { logo, links } = config.content;
 
