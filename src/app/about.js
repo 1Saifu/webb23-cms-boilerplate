@@ -9,11 +9,15 @@ export async function generateMetadata() {
 export default async function ContactPage() {
   try {
     const currentStory = await StoryblokCMS.getStory({ slug: ["about"] });
+    console.log('Current Story:', currentStory);
     if (!currentStory) throw new Error();
+
 
     return <StoryblokStory story={currentStory} />;
   } catch (error) {
+    console.error('Error fetching story:', error); 
     notFound();
   }
 }
+
 export const dynamic = StoryblokCMS.isDevelopment ? "force-dynamic" : "force-static";

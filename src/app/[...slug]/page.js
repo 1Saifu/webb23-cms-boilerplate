@@ -7,25 +7,23 @@ import { StoryblokCMS } from "@/utils/cms";
 export async function generateStaticParams() {
   try {
     const paths = await StoryblokCMS.getStaticPaths();
-    console.log('Generated paths:', paths);
-    return paths.map(path => ({ params: { slug: path.slug } }));
+    return paths;
   } catch (error) {
-    console.log('Error generating static params:', error);
-    return [];
+    console.log(error);
   }
 }
 
 // Generates static meta props for each story
 export async function generateMetadata({ params }) {
   const slug = params.slug.join("/");
-  console.log("Generating metadata for slug:", slug); 
+  console.log("Generating metadata for slug:", slug); // Verify slug
   try {
     const metadata = await StoryblokCMS.generateMetaFromStory(slug);
-    console.log("Generated Metadata:", metadata); 
+    console.log("Generated Metadata:", metadata); // Verify metadata
     return metadata;
   } catch (error) {
-    console.error("Error generating metadata:", error); 
-    return { title: "Default Title", description: "Default Description" };
+    console.error("Error generating metadata:", error); // Log errors
+    return { title: "Default Title", description: "Default Description" }; // Fallback
   }
 }
 
@@ -46,4 +44,6 @@ export default async function CMSPage({ params }) {
 }
 
 //Force dynamic rendering in development and Visual editor
-export const dynamic = StoryblokCMS.isDevelopment ? "force-dynamic" : "force-static";
+export const dynamic = StoryblokCMS.isDevelopment
+  ? "force-dynamic"
+  : "force-static";
